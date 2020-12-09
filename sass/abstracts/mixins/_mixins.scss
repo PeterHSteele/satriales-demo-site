@@ -1,0 +1,36 @@
+@mixin clearfix(){
+    display: table;
+    content: '';
+    clear:both; 
+}
+
+@mixin slideUpContent(){
+
+    .slidein-panel{
+        height: 100%;
+        position: relative;
+        opacity: 0;
+        transform: translate(0,75%);
+
+        @keyframes slideUp{ 
+            to { 
+                transform: translate(0,0);
+                opacity: 1;
+            }
+        }
+
+        &.animation-not-needed{
+            transform: none;
+            opacity: 1;
+        }
+
+        &.translated{
+            animation: slideUp .5s ease forwards;
+        }
+
+        &.translated:nth-child(even){
+            animation-duration: .7s;
+        }
+    }
+
+}

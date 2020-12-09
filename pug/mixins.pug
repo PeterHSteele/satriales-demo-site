@@ -1,0 +1,45 @@
+mixin border()
+  - for ( var i = 0; i<50; i++)
+    .slant
+    
+mixin question(data,questionIndex)
+  - var isHigh = questionIndex%2==0?' is-high':'';
+  - var base = 'question-wrap question-wrap-'+questionIndex;
+  - var className = base+isHigh;
+  div(class=className)
+    fieldset(id='question-'+questionIndex)
+      legend=data.question
+      each choice, index in data.choices
+        -var id='question-'+questionIndex+'-'+index
+        .radio-wrap
+          input(type="radio" id=id name=data.question value=choice)
+          label(for=id)=choice
+          
+
+mixin questionnaire(data)
+  div.display
+  form.questionaire.question-container
+    - for(let i=0;i<data.length;i++)
+      +question(data[i],i)
+  .buttons
+    button#forward forward
+    button#back back
+    div
+      button.submit-btn(type="submit" disabled=true) Get Results!
+  .results-container
+    .status Waiting for your feedback. <span class="number">0</span>/5 questions complete...
+    .results.large-text
+    .loader.no-display
+      .bottom
+        .middle
+        .top
+    
+mixin meat(id,name,content,src,alt)
+  article.meat.panel(id=id).slidein-wrap
+    .text
+      .entry-header
+        h2=name
+      .entry-body
+        p=content
+    .image-wrap.slidein-panel.animation-not-needed
+      img.meat-image(src=src alt=alt)

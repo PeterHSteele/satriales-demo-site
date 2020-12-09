@@ -1,0 +1,42 @@
+doctype html
+html(lang="en-US")
+    head
+        title Satriale's Meat Market
+        meta(name="description" content="Premier purveyor of fine meats to North New Jersey")
+        link(href="https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap" rel="stylesheet")
+        link(href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet")
+        link(href="./fontawesome/css/all.min.css" rel="stylesheet")/
+        link(href="./css/normalize.css" rel="stylesheet")/
+        link(href="./css/style.css" rel="stylesheet")/
+        include map.pug
+    body
+      header(class="site-header")
+        .site-logo
+          a(href="#")
+            img(src="./img/sat-logo.svg" )
+        .contact
+          p <span><i class="fas fa-phone"></i></span> 012 120 8535
+          p <span><i class="fas fa-map-marker"></i></span> 123 Main Street, Kearny, NJ, 07032
+          p <span><i class="fa fa-clock"></i></span> Deli Open 8AM-6PM Daily
+        .controls      
+          button.menu-toggle(aria-hidden=true)
+            span <i class="fa fa-bars"></i>
+        nav.main-navigation
+          ul
+            -var menu = [{text:'Deli',href: '#',submenu:[]},{text: 'Butcher',href: './meats/index.html',submenu: [{text: 'Pork',href: './meats/index.html#pork'},{text:'Beef', href: './meats/index.html#beef'},{text:'Lamb', href:'./meats/index.html#lamb'}]}, {text: 'Catering',href: '#',submenu:[]},{text: 'About',href: '#',submenu:[]}]
+            mixin menu_item(item)
+              - var hasSubmenu=item.submenu.length>0
+              li
+                a(href=item.href)=item.text
+                  if hasSubmenu
+                    span <i class="fa fa-caret-down"></i>
+                if hasSubmenu
+                  ul.submenu
+                    each submenu_item in item.submenu
+                      li
+                        a(href=submenu_item.href)=submenu_item.text
+                  
+                
+
+            each val in menu
+              +menu_item(val)

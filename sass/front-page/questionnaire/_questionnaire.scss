@@ -1,0 +1,318 @@
+@use '../../abstracts/fonts/fonts';
+@use '../../abstracts/colors/colors';
+@use '../../abstracts/mixins/mixins';
+
+.questionnaire{
+    header{
+        text-align: center;
+    }
+    background: colors.$color__yellow-one;
+    
+    .entry-content{
+        padding: 0 100px;
+    }
+
+    @media all and (max-width: 1260px){
+        .entry-content{
+            padding: 0;
+        }
+    }
+
+    form{
+        height: 500px;
+        overflow: hidden;
+        transition: .5s all;
+    }
+
+    .is-moved .question-wrap:first-child{
+        margin-left: 0;
+    }
+
+    .question-wrap{
+        float: left;
+        height: 400px;
+        padding: 10px;
+        width: 30%;
+        margin: 90px 1.66% 10px;
+        font-size: 16px;
+        padding: 1em;
+        color: #000;
+        box-shadow: 5px 5px 10px 0px colors.$color__yellow-two;
+        transition: .5s all;
+
+        &.no-width{
+            width: 0;
+            padding: 0;
+            margin: 0;
+        }
+
+        &:first-child{
+            margin-left: 33.33%;    
+        }
+
+        div{
+            margin: 12px 0;
+        }
+
+        fieldset{
+            border: none;
+        }
+        
+        legend{
+            font-family: fonts.$font__secondary;
+            font-size: 1.6em;
+            color: colors.$color__red-one;
+        }
+
+        input{
+            position: absolute;
+            left: -9999px;
+        }
+
+        &.is-high{
+            margin-top: 10px;
+        }
+
+        label{
+            font-weight: 300;
+            font-size: 1.5em;
+            line-height: 1em;
+            position: relative;
+            padding: 8px 20px 8px 80px;
+            display: block;
+
+            &:before,
+            &:after{
+                content: '';
+                position: absolute;
+                background: colors.$color__yellow-one;
+                border-radius: 50%;
+            }
+
+            &:before{
+                width: 1em;
+                height: 1em;
+                top:.2em;
+                left: .2em;
+                border: 2px solid #000000;
+            }
+
+            &:after{
+                width: 1em;
+                height: 1em;
+                top:.2em;
+                left:.2em;
+                background: #000;
+                transform: scale(0);
+                transition: .4s all
+            }
+        }
+
+        input[type=radio]+label:hover{
+            box-shadow:  2px 2px 4px 0 colors.$color__yellow-two;
+            transition: .2s all;
+        }
+
+        input[type=radio]:checked + label:after{
+            transform: scale(1);
+        }
+    }
+
+    .buttons{
+        text-align: center;
+
+        $changeSlideBtnWidth: 100px;
+        $btnMargin: 5px;
+
+        button{
+            background: #000;
+            color: colors.$color__yellow-one;
+            border: 2px solid #000;
+            border-radius: 5px;
+            width: $changeSlideBtnWidth;
+            font: 700 1em fonts.$font__secondary;
+            padding: .5em;
+            margin: $btnMargin;
+            transition: .3s all;
+            box-shadow: 3px 3px colors.$color__yellow-two;
+
+            &:hover,
+            &:focus{
+                background: colors.$color__yellow-one;
+                color: #000;
+                outline: none;
+            }
+
+            &:active{
+                box-shadow: none;
+                transform: translate(3px, 3px);
+            }
+        }
+
+        .submit-btn{
+            background: #fff;
+            color: colors.$color__red-one;
+            box-shadow: 3px 3px #777;
+            border: none;
+            width: 2*$changeSlideBtnWidth+2*$btnMargin;
+
+            &:hover,
+            &:focus{
+                color: #fff;
+                background: colors.$color__red-one;
+            }
+        }
+
+        .submit-btn:disabled,
+        .submit-btn:disabled:hover,
+        .submit-btn:disabled:focus{
+            background: #ddd;
+            color: #777;
+        
+            &:active{
+                transform: none;
+            }
+
+        }  
+    }
+
+    .results-container{
+        padding: 15px 0 0;
+
+        .status,
+        .results{
+            font-family: fonts.$font__secondary;
+            text-align: center;
+            
+            p{
+                margin: .5em;
+            }
+
+            &.large-text{
+                font-size: 1.8em;
+            }
+
+            p.recommendation{
+                color: colors.$color__red-one;
+                font-size: 2.2em;
+            }
+
+            img{
+                max-width: 800px;
+            }
+
+        }
+
+        .results{
+            opacity: 0;
+            transition: .5s all;
+            &.show{
+              opacity: 1;
+            }
+        }
+    }
+
+    @media all and (max-width: 750px){
+        .results-container{
+            width: auto;
+        }
+    }
+
+    .loader{
+        position: relative;
+        width: 100%;
+        height: 100px;
+
+
+        .bottom{
+            top: 30px;
+            left: calc(50% - 50px);
+        }
+
+        .top,
+        .bottom,
+        .middle{
+            position: absolute;
+            content:'';
+            border-radius: 50%;
+        }
+        
+        .bottom{
+            width: 100px;
+            height: 100px;
+            background: black;
+            animation: 4s change linear infinite;
+        }
+        
+        .middle{
+            width: 100px;
+            height: 50px;
+            border-radius: 100px 100px 0 0;
+            background: colors.$color__red-one;
+            transform-origin: bottom;
+            animation: 2s spin-middle linear infinite;
+            z-index: 2;
+        }
+
+        .top{
+            width: 100px;
+            height: 50px;
+            background: #000;
+            border-radius: 100px 100px 0 0;
+            z-index: 3;
+            animation: 4s spin-top 1s linear infinite;
+            transform-origin: bottom;
+        }
+
+        @keyframes spin-middle{
+            to{
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin-top{
+            0%{
+                transform: rotate(0deg)
+            }
+
+            25%{
+                transform: rotate(0deg)
+            }
+
+            50%{transform: rotate(180deg)}
+
+            75%{transform:rotate(180deg)}
+
+            100%{transform: rotate(360deg)}
+        }
+    }
+
+
+    @media all and (max-width: 1060px){
+
+        .question-wrap{
+            width: 47%;
+            margin: 90px 1.3% 10px;
+        }
+
+        .question-wrap:first-child{
+            margin-left: 0;
+        }
+    
+    }
+
+    @media all and (max-width: 750px){
+
+        form{
+            height: 420px;
+        }
+
+        .question-wrap{
+            width: 97%;
+            margin: 10px 0;
+        }
+    
+    }
+
+    
+}

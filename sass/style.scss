@@ -1,0 +1,25 @@
+@use 'abstracts/abstracts';
+
+/* Base
+--------------------------------*/
+@use 'base/base';
+
+/* Header
+--------------------------------*/
+@use 'components/header/header';
+
+/* Navigation
+--------------------------------*/
+@use 'components/navigation/navigation';
+
+/* Content
+--------------------------------*/
+@use 'components/content/content';
+
+/* Front Page
+--------------------------------*/
+@use 'front-page/front-page';
+
+/* Footer
+---------------------------------*/
+@use 'components/footer/footer';

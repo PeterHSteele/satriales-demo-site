@@ -1,0 +1,75 @@
+include ../mixins.pug
+doctype html
+html(lang="en-US")
+    head
+        title Butcher Shop
+        meta(name="description" content="Premier purveyor of fine meats to North New Jersey")
+        link(href="https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap" rel="stylesheet")
+        link(href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet")
+        link(href="../fontawesome/css/all.min.css" rel="stylesheet")/
+        link(href="../css/normalize.css" rel="stylesheet")/
+        link(href="../css/style.css" rel="stylesheet")/
+        include ../map.pug
+    body.meats
+      header(class="site-header")
+        .site-logo
+          a(href="../index.html")
+            img(src="../img/sat-logo.svg" )
+        .contact
+          p <span><i class="fas fa-phone"></i></span> 012 120 8535
+          p <span><i class="fas fa-map-marker"></i></span> 123 Main Street, Kearny, NJ, 07032
+          p <span><i class="fa fa-clock"></i></span> Deli Open 8AM-6PM Daily
+        .controls      
+          button.menu-toggle(aria-hidden=true)
+            span <i class="fa fa-bars"></i>
+        nav.main-navigation
+          ul
+            -var menu = [{text:'Deli',href: '#',submenu:[]},{text: 'Butcher',href: './meats/index.html',submenu: [{text: 'Pork',href: '#pork'},{text:'Beef', href:'#beef'},{text:'Lamb', href:'#lamb'}]}, {text: 'Catering',href: '#',submenu:[]},{text: 'About',href: '#',submenu:[]}]
+            mixin menu_item(item)
+              - var hasSubmenu=item.submenu.length>0
+              li
+                a(href=item.href)=item.text
+                  if hasSubmenu
+                    span <i class="fa fa-caret-down"></i>
+                if hasSubmenu
+                  ul.submenu
+                    each submenu_item in item.submenu
+                      li
+                        a(href=submenu_item.href)=submenu_item.text
+                
+
+            each val in menu
+              +menu_item(val)
+      main.butcher-content-wrap
+        h1 Butcher
+        -
+          var meats=[
+            {
+              id: 'pork',
+              name: 'Pork',
+              content:'Our pork comes from sustainably-raised pigs. Our criteria for sourcing sustainable meat is threefold. First, economic stability: we pay a fair price. Second, social sustainability. We buy from farms that treat their neighbors and workers well. Last but not least, environmental sustainability. We buy from farms that don\'t use checmicals harmful to the environment.',
+              src: '../img/pork.jpg',
+              alt: 'picture of Satriale\'s pork',
+            },
+            {
+              id: 'lamb',
+              name: 'Lamb',
+              content: 'Lamb is a special delicacy of ours. Cook the ribs with a seasoning of garlic and rosemary',
+              src: '../img/lamb.jpg',
+              alt: 'a rack of lamb ribs'
+            },
+            {
+              id: 'beef',
+              name: 'Beef',
+              content: 'Whether you\'re making burgers or a roast for a special occasion, our beef is of the highest quality.',
+              src: '../img/beef.jpg',
+              alt: 'a side of beef in our cooler'
+            }
+          ]
+
+        each meat in meats
+          +meat(meat.id, meat.name, meat.content, meat.src, meat.alt)
+
+
+include ../footer.pug 
+script(src="../js/main.js") 

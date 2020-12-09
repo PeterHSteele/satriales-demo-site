@@ -1,0 +1,7 @@
+node_modules
+**/fontawesome
+style.css.map
+package-lock.json
+data/**
+pug/map.pug
+    

@@ -1,0 +1,60 @@
+include header.pug
+include mixins.pug
+main
+  article(class='hero')
+    .image
+        img(src="./img/butcher-shop.jpg" alt="our meats")
+    .content
+      .site-name
+        h1 Satriale's
+        p.tagline Serving Kearny since 1947.
+      .intro
+        p For generations now, Satriale's has been offering the best quality meats to the neighborhoods of Kearny, New Jersey. Our founder, Francis Satriale, immigrated to America with his family from Italy in 1924. He founded Satriale's because he loved helping customers choose the best cuts for their dishes. We're proud of your neighborhood, our products, and our history of service. We look forward to serving you.
+  article.menu.add-spacing
+    header.entry-header
+      h2.screen-reader-text Offerings
+      img(src="./img/offerings.svg" aria-hidden class="striped-heading")
+      p.entry-description Please take a look at our <a href="#">full menu</a>.
+    section.sandwiches
+      img(src="./img/italian-sandwich.jpg" alt="our delicious sandwich")
+      h3 Sandwiches
+      .content We serve all kinds of sandwiches from Italian subs packed with delicous cold cuts and spicy peppers to roasted vegetable offerings with mushrooms, onions, and garlic sauteed and then dressed with premium imported olive oil. If you would like to customize any of the toppings we would be happy to accomodate you.
+    section.coffee
+      img(src="./img/cappucino.jpg" alt="americano")
+      h3 Espresso
+      .content Drop by in the morning for one of our delicious espresso drinks and get the energy you need to start your day. Just the aroma of our beans, which are fair trade and roasted right here in New Jersey, is enough to have you feeling alert in no time. If you're not in a rush, have a seat at one of our tables and take a moment to relax and watch the world the world go by.
+    section.pastries
+      img(src="./img/cannoli.jpg" alt="cannoli")
+      h3 Pastries     
+      .content If you're hankering for something sweet, we sell pastries from <a href="http://example.com">Mike's</a>, another family-owned business that has been in the neighborhood for eons. We have: 
+        -var pastries=['cannoli', 'biscotti', 'bocconotto', 'panna cotta', 'spumoni', '...and more']
+        ul
+        each pastry in pastries
+          li=pastry
+  article.newsletter
+    .border-container
+      
+    h2 Newsletter
+    form(action="#")
+      p We very occassionally send updates about special offers and sales. We also send coupons that only our email subscribers have access to!
+      label(for="")
+        input(type="email" name="" placeholder="my-email@example.com")
+      input(type="submit" value="I want updates!")  
+  article.butcher.add-spacing
+    header
+      h2.screen-reader-text A Cut Above
+      img.striped-heading(src="./img/a-cut-above.svg" aria-hidden)
+      p.centered-text Our buyer, Dave, has the most discerning taste in all of New Jersey. He personally meets (no pun intended) all of our suppliers, many of whom are local, and makes sure they're selling us the <a href="#">highest quality product</a>.
+    .butcher-content-wrap.slidein-wrap
+      .panel.slidein-panel.panel-left.animation-not-needed
+      .panel.slidein-panel.panel-right.animation-not-needed
+  article.questionnaire.add-spacing
+    header.entry-header
+      h2.screen-reader-text What's for Dinner?
+      img.striped-heading(src="./img/whats-for-dinner_1.svg" aria-hidden)
+      p.centered-text There are so many fantastic cuts of meat to choose from. Too often, we're paralyzed by choice. But not anymore! Take our short quiz to find your ideal next roast.
+    .entry-content
+      +questionnaire(questionnaire)
+include footer.pug
+      
+script(src="./js/main.js")  

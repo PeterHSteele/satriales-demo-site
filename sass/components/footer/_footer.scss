@@ -1,0 +1,69 @@
+@use '../../abstracts/colors/colors';
+@use '../../abstracts/mixins/mixins';
+@use '../../abstracts/fonts/fonts';
+
+footer.site-footer{
+    color: colors.$color__gray-44;
+    padding: 100px 200px 0;
+
+    @media all and (max-width: 1000px){
+        padding: 10px;
+    }
+
+    .location{
+        width: 100%;
+        &:after{
+            @include mixins.clearfix();
+        }
+    }
+    
+    .location p{
+        margin: 0;
+    }
+
+    .address-and-hours,
+        .map{
+            float: left;
+            width: 50%;
+            margin: 0 0 25px;
+        }
+
+    @media all and (max-width: 1000px){
+        .address-and-hours,
+        .map{
+            width: 100%;
+        }
+    }
+
+    .address-and-hours{
+        font-weight: 300;
+        h2{
+            color: colors.$color__red-one;
+        }
+
+        h3{
+            font-family: fonts.$font__primary;
+            font-weight: 300;
+        }
+        .em{
+            font-family: fonts.$font__secondary;
+            font-weight: 600;
+        }
+    }
+
+    .map{
+        min-height: 400px;
+    }
+
+    .credits{
+        margin-top: 25px;
+        padding: 1em 0;
+        border-top: 1px solid #888;
+        color: colors.$color__gray-44;
+        font-size: .8em;
+
+        p{
+            margin: 0;
+        }
+    }
+}

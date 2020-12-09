@@ -1,0 +1,48 @@
+@use '../../abstracts/fonts/fonts';
+@use '../../abstracts/colors/colors';
+@use '../../abstracts/mixins/mixins';
+
+article.menu{
+    position: relative;
+    z-index: 1;
+    @include mixins.clearfix();
+
+    .entry-header{
+        padding: 1em;
+        font-family: fonts.$font__secondary;
+        text-align: center;
+
+        .entry-description{
+            font-size: 1.2em;
+        }
+    }
+
+    section{
+        float: left;
+        width: 33.33%;
+        padding: 2em 4em;
+        font-weight: 300;
+        color: colors.$color__gray-44;
+
+        &:nth-child(3){
+            background: colors.$color__yellow-gray;
+            color: #000;
+        }
+
+        h3{
+            font-family: fonts.$font__secondary;
+        }
+    }
+}
+
+@media screen and (max-width: 1000px){
+    article.menu section{
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 700px){
+    article.menu section{
+        width: 100%;
+    }
+}

@@ -1,0 +1,84 @@
+@use '../../abstracts/colors/colors';
+
+.site-header{
+    background: #000;
+    color: colors.$color__yellow-one;
+    padding: 10px;
+
+    .site-logo{
+        float: left;
+        margin: 0 0 0 100px;
+
+        img{
+            height: 100px
+        }
+    }
+
+    .contact{
+        float: left;
+        font-size: 14px;
+        padding: 1em 1em 1em 2em;
+
+        p{
+            span{
+                i {
+                    color: #fff;
+                    margin: 0 9px 0 0;
+                }
+            }
+
+            margin: 0;
+        }
+    }
+
+    &:after{
+        display: table;
+        content: '';
+        clear: both;
+    }
+
+    .controls{
+        display: none;
+
+        button{
+            border: none;
+            background: colors.$color__yellow-one;
+            color: #000;
+            transition: .3s all;
+            padding: 6px 8px;
+            border-radius: 2px;
+            font-size: 1.4em;
+
+            &:hover,
+            &:focus{
+                color: colors.$color__red-one;
+                background: #fff;
+                outline: none;
+            }
+        }
+    }
+
+    @media all and (max-width: 600px){
+
+        .site-logo,
+        .contact{
+            width: 100%;
+            text-align: center;
+        }
+
+        .site-logo{
+            margin: 0;
+            padding: 0 0 0 2em;
+        }
+
+    }
+
+    @media all and (max-width: 530px){
+        .controls{
+            float: left; 
+            width: 100%;
+            display: block;
+            text-align: center;
+        }
+    }
+}

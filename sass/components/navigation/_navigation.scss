@@ -1,0 +1,137 @@
+@use '../../abstracts/colors/colors';
+@use '../../abstracts/mixins/mixins';
+
+.main-navigation{
+    float: right;
+    padding-top: 30px;
+
+    ul{
+        &:after{
+            @include mixins.clearfix();
+        }
+        transition: .5s height;
+    }
+
+    li{
+        position: relative;
+        float: left;
+    }
+
+    &:hover a{
+        color: #fff;
+    }
+
+    a{
+        display: block;
+        font-weight: 600;
+        text-decoration: none;
+        color: colors.$color__yellow-one;
+        padding: 10px 1.75em;
+        border-bottom: 5px solid black;
+        outline: none;
+        transition: .2s color;
+        font-weight: 700;
+
+        &:hover,
+        &:focus{
+            border-bottom: 5px solid colors.$color__yellow-one;
+            color: colors.$color__yellow-one;
+        }
+
+        &:hover + .submenu,
+        &:focus + .submenu{
+            left: auto;
+            //top: calc(100% + 10px);
+            top: 100%;
+        }
+    }
+
+    i{
+        margin: 0 0 0 .5em;
+    }
+
+    .submenu{
+        position: absolute;
+        left: -9999px;
+        top: 180%;
+        width: 100%;
+        background: #000;
+        transition: .2s top;
+        z-index: 1;
+        
+        &:after{
+            @include mixins.clearfix();
+        }
+
+        &:hover,
+        &:focus{
+            //top: calc(100% + 10px);
+            top: 100%;
+            left: auto;
+        }
+
+        li{
+            float: none;
+        }
+
+        a{
+            border: none;
+            &:before{
+                content: none;
+            }
+            &:first-child{
+                padding: 20px 1.75em 10px
+            }
+        }
+    }
+        
+    @media all and (max-width: 600px){
+        &{
+            width: 100%;
+            text-align: center;
+        }
+    }
+
+    @media all and (max-width: 530px){
+        /*&{
+            position: absolute;
+            left: -9999px;
+        }
+*/
+        ul{
+            height: 0;
+            overflow: hidden;
+        }
+
+        li{
+            float: none;
+            a{
+                text-align: left;
+            }
+        }
+
+        ul.unfurl{
+            position: relative;
+
+            &.li{
+                //float: none;
+                a{
+                    text-align: left;
+                }
+            }
+        }
+
+        &.toggled{
+            position: relative;
+            left: 0;
+
+            li{
+                //float: none;
+
+                a{
+                    text-align: left;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,53 @@
+@use '../../abstracts/colors/colors';
+@use '../../abstracts/fonts/fonts';
+@use '../../abstracts/mixins/mixins';
+
+.hero{
+    padding: 36px 0;
+    background: colors.$color__yellow-one;
+
+    @include mixins.clearfix();
+
+    h1{
+        color: colors.$color__red-one;
+        font: 2.5em fonts.$font__secondary;
+    }
+
+    .tagline{
+        font-family: fonts.$font__secondary;
+    }
+
+    & > div{
+        padding: 0 48px;
+    }
+
+    .image,
+    .content{
+        float: left;
+        width: 50%;
+        height: 100%;
+    }
+
+    .image{
+        border-right: 1px solid #000;
+    }
+
+    .content{
+        
+        .site-name{
+            border-bottom: 1px solid #000;
+        }
+
+    }
+}
+
+@media screen and (max-width: 1000px){
+    .hero .image,
+    .hero .content{
+        width: 100%;
+    }
+
+    .hero .image{
+        border-right: none;
+    }
+}

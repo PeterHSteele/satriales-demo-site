@@ -1,0 +1,151 @@
+@use '../../abstracts/fonts/fonts';
+@use '../../abstracts/colors/colors';
+@use '../../abstracts/mixins/mixins';
+
+.butcher{
+    @include mixins.clearfix();
+    
+    header{
+        text-align: center;
+
+            /*
+            a{  
+                color: colors.$color__red-one;
+                transition: none;
+
+                &:before{
+                    z-index: 1;
+                    background: white;
+                    top: 100%;
+                }
+
+                &:hover::before{
+                    transition: none;
+                    height: 4px;
+                }
+            }*/
+        
+    }
+    
+    .butcher-content-wrap{
+        @include mixins.clearfix();
+        width: 100%;
+        position: relative;
+        min-height: 600px;
+    }
+
+    .slidein-panel{
+        background-repeat: no-repeat;
+        height: 100%;
+        float: left;
+        width: 50%;
+        position: relative;
+        opacity: 0;
+        transform: translate(0,75%);
+        
+
+        @keyframes slideUp{ 
+            to { 
+                transform: translate(0,0);
+                opacity: 1;
+            }
+        }
+
+        &.translated{
+            animation: slideUp .5s ease forwards;
+        }
+
+        &.translated:nth-child(even){
+            animation-duration: .7s;
+        }
+
+        &:after{
+            position: absolute;
+            content: '';
+            top: 0;
+            height: 0;
+            width: 0;
+        }
+    }
+
+    .panel:after{
+        position: absolute;
+        content: '';
+    }
+
+    $height: 600px;
+
+    .panel-left{
+        height: $height;
+        background-image: url('../img/cubed-meat.jpg');
+        background-size: cover;
+
+        &:after{
+            right: 0;
+            border-bottom: $height solid #fff/*colors.$color__yellow-one*/;
+            border-left: $height/5 solid transparent 
+        }
+    }
+
+    .panel-right{
+        background-image: url('../img/salmon.jpg');
+        background-size: cover;
+        height: $height;
+
+        &:after{
+            left: 0;
+            border-top: $height solid #fff/*colors.$color__yellow-one*/;
+            border-right: $height/5 solid transparent 
+        }
+    }
+
+    @media all and (max-width: 600px){
+        .slidein-panel{
+            width: 96%;
+            margin: 1% 2%;
+        }
+
+        .panel-left{
+            &:after{
+                border-left: $height/15 solid transparent;
+            }
+        }
+
+        .panel-right{
+            &:after{
+                border-right: $height/15 solid transparent;
+            }
+        }
+    }
+
+
+    /*
+    .panel-left{
+        width: 100%;
+        height: 600px;
+        background-image: url('../img/cubed-meat.jpg');
+        background-size: cover;
+    }
+
+    .panel-right{
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-image: url('../img/salmon.jpg');
+        background-size: cover;
+        transform: skewX(-15deg);
+        transform-origin: bottom right;
+        height: 100%;
+        width: 60%;
+    }
+
+    .panel-left:after{
+        content: '';
+        top: 0;
+        right: 0;
+        width: 100px;
+        height: 100px;
+        background: transparent;
+        transform:skewX(45deg);
+    }*/
+}
