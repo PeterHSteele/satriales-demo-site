@@ -264,7 +264,7 @@ function QuestionCarousel(){
         if(!this.hasResult){
             this.loader.className+=' no-display';
             this.status.className+=' no-display';
-            this.results.innerHTML='<p>Our recommendation is:</p><p class="recommendation">brisket!</p><img class="recommendation-image" src="./img/brisket.jpg" />';
+            this.results.innerHTML='<p>Our recommendation is:</p><p class="recommendation">brisket!</p><img class="recommendation-image" src="../img/brisket.jpg" />';
             this.results.className+=' show';
             this.submitBtn.innerHTML='Redo!';
             this.hasResult=true;
