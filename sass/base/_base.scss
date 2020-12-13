@@ -1,6 +1,10 @@
 @use '../abstracts/colors/colors';
 @use '../abstracts/fonts/fonts';
 
+html, body{
+    height: 100%;
+}
+
 html{
     box-sizing: border-box;
 }

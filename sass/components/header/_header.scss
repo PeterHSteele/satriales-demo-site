@@ -1,9 +1,14 @@
 @use '../../abstracts/colors/colors';
 
 .site-header{
-    background: #000;
+    background: #444;
     color: colors.$color__yellow-one;
-    padding: 10px;
+
+    .site-logo,
+    .contact,
+    .controls{
+        padding: 10px
+    }
 
     .site-logo{
         float: left;
@@ -58,7 +63,7 @@
         }
     }
 
-    @media all and (max-width: 600px){
+    @media all and (max-width: 1100px){
 
         .site-logo,
         .contact{
@@ -68,7 +73,7 @@
 
         .site-logo{
             margin: 0;
-            padding: 0 0 0 2em;
+            padding: 10px 10px 10px 2em;
         }
 
     }

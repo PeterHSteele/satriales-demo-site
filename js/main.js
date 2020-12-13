@@ -7,30 +7,20 @@ function Satriales_Navigation(){
   _.header=document.getElementsByClassName('site-header')[0];
   _.toggle=_.header.getElementsByClassName('menu-toggle')[0];
   _.navlist=_.nav.childNodes[0];
-  _.navHeight=0
 
   _.replace=function(el,str){
     el.className=el.className.replace(str,'');
   }
 
   _.handleToggle=function(){
+    console.log('scrollHeight',`${_.navlist.scrollHeight}px`);
     if(_.nav.className.indexOf(' toggled')>-1){
-      //_.nav.className=_.nav.className.replace(' toggled','');
       _.replace(_.nav,' toggled');
-      _.navlist.setAttribute('style',"");
-    } else{
-      _.navlist.className+=' unfurl';
-      _.navHeight=_.navlist.offsetHeight;
-      console.log('navheight',_.navHeight);
-      _.replace(_.navlist,' unfurl');
+      _.navlist.style.height=0
+    } else{     
       _.nav.className+=' toggled';
-      _.navlist.setAttribute('style',"height: 208px;")
-      //console.log(_.navlist.style);
+      _.navlist.style.height=`${_.navlist.scrollHeight}px`;
     }
-  }
-
-  _.logHeight=function(){
-    console.log('ul height',_.navlist.offsetHeight);
   }
 
   _.addListeners=function(){
@@ -38,7 +28,6 @@ function Satriales_Navigation(){
   }
 
   _.addListeners();
-  _.logHeight();
 }
 
 const nav=new Satriales_Navigation();
@@ -85,7 +74,6 @@ function SlideIn(){
           panels.forEach(panel=>{
             //console.log(panel.className)
             panel.className=panel.className.replace(' animation-not-needed','')
-            console.log(panel.className)
           });
         }
       })
@@ -229,18 +217,7 @@ function QuestionCarousel(){
             }
         })
     }
-/*
-    this.checkQuestionnaireComplete=function(){
-        const {radioNames}=this
-        for(let i=0;i<radioNames.length;i++){
-            const group = this.carousel[radioNames[i]];
-            if (!group.value){
-                return false;
-            }
-        }
-        return true;
-    }
-*/
+
     this.checkQuestionnaireComplete=function(){
         const {questionsAndAnswers}=this,
         radioNames = Object.keys(questionsAndAnswers);
@@ -279,9 +256,14 @@ function QuestionCarousel(){
         }
     }
 
+    this.getInitStatusMsg=function(){
+      return "Waiting for your feedback. <span class='number'>0</span>/5 questions complete...";
+    }
+
     this.handleSubmitClick=function(){
         if(!this.hasResult){
             this.loader.className+=' no-display';
+            this.status.className+=' no-display';
             this.results.innerHTML='<p>Our recommendation is:</p><p class="recommendation">brisket!</p><img class="recommendation-image" src="./img/brisket.jpg" />';
             this.results.className+=' show';
             this.submitBtn.innerHTML='Redo!';
@@ -289,13 +271,12 @@ function QuestionCarousel(){
         } else {
             this.reset();
             this.hasResult=false;
-        }
-        
+        }  
     }
 
     this.reset=function(){
         Array.from(this.inputs).forEach(input=>input.checked=false);
-        //this.loader.className=this.loader.className.replace(' no-display','');
+        this.status.className=this.status.className.replace(' no-display', '');
         Object.keys(this.questionsAndAnswers).forEach(question=>this.questionsAndAnswers[question]=null);
         this.submitBtn.innerHTML='Get Results!';
         this.submitBtn.setAttribute('disabled',true);

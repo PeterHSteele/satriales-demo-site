@@ -1,3 +1,6 @@
+@use '../../abstracts/colors/colors';
+@use '../../abstracts/fonts/fonts';
+
 @mixin clearfix(){
     display: table;
     content: '';
@@ -33,4 +36,28 @@
         }
     }
 
+}
+
+@mixin button-base(){
+    font-size: 1.5em;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+}
+
+@mixin cta-btn(){
+    position: relative;
+        top: -2px;
+        background: colors.$color__yellow-one;
+        color: colors.$color__red-one;
+        font-family: fonts.$font__secondary;
+        box-shadow: 3px 3px colors.$color__yellow-two;
+        transition: .2s all;
+        margin: 10px 0 0 0;
+}
+
+@mixin cta-btn-hover(){
+    background: colors.$color__red-one;
+    color: colors.$color__yellow-one;
+    box-shadow: 3px 3px colors.$color__red-two;
 }

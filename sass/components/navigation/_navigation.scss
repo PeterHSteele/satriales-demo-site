@@ -3,7 +3,7 @@
 
 .main-navigation{
     float: right;
-    padding-top: 30px;
+    padding-top: 40px;
 
     ul{
         &:after{
@@ -15,6 +15,30 @@
     li{
         position: relative;
         float: left;
+
+        .menu-icon{
+            position: absolute;
+            height: 2.2em;
+            top: .1em;
+            left: .2em;
+        }
+
+        &:nth-child(3){
+            /*
+            &>a{
+                padding-left: 2em;
+            }
+*/
+            .menu-icon{
+                height: 1.8em;
+                top: .3em;
+            }
+        }
+
+        &:hover img{
+            animation: .5s shake steps(2,end) infinite;
+            transform-origin: center;
+        }
     }
 
     &:hover a{
@@ -26,8 +50,8 @@
         font-weight: 600;
         text-decoration: none;
         color: colors.$color__yellow-one;
-        padding: 10px 1.75em;
-        border-bottom: 5px solid black;
+        padding: 10px 1em 10px 2.5em;
+        border-bottom: 5px solid #444;
         outline: none;
         transition: .2s color;
         font-weight: 700;
@@ -55,7 +79,7 @@
         left: -9999px;
         top: 180%;
         width: 100%;
-        background: #000;
+        background: #444;
         transition: .2s top;
         z-index: 1;
         
@@ -85,7 +109,7 @@
         }
     }
         
-    @media all and (max-width: 600px){
+    @media all and (max-width: 1100px){
         &{
             width: 100%;
             text-align: center;
@@ -96,28 +120,60 @@
         /*&{
             position: absolute;
             left: -9999px;
-        }
-*/
-        ul{
+        }*/
+
+        padding: 0;
+        
+        &>ul{
+            position: absolute;
             height: 0;
             overflow: hidden;
+            transition: .5s height;
+            background: #333;
+            width: 100%;
+        }
+
+        ul ul.submenu{
+            left: 0px;
+            position: relative;
+            display: block;
+            padding-left: 3em;
+            background: #444;
+
+            a{
+                border-bottom: none;
+                &:hover,
+                &:focus{
+                    color: colors.$color__yellow-one;
+                }
+            }
+        }
+
+        a {
+            i{
+                display: none;
+            }
+
+            border-bottom: none;
+
+            &:hover,
+            &:focus{
+                //border-bottom: 5px solid #444;
+                border-bottom: none;
+                color: colors.$color__yellow-one;
+            }
         }
 
         li{
             float: none;
+
             a{
                 text-align: left;
+                padding-left: 3em;
             }
-        }
 
-        ul.unfurl{
-            position: relative;
-
-            &.li{
-                //float: none;
-                a{
-                    text-align: left;
-                }
+            &:nth-child(3) a{
+                padding-left: 3em;
             }
         }
 
@@ -133,5 +189,11 @@
                 }
             }
         }
+    }
+}
+
+@keyframes shake{
+    to{
+        transform: rotate(25deg);
     }
 }

@@ -1,8 +1,9 @@
 @use '../../abstracts/fonts/fonts';
 @use '../../abstracts/colors/colors';
+@use '../../abstracts/mixins/mixins';
 
 .newsletter{
-    background: #000;
+    background: #444;
     color: #fff;
     text-align: center;
     padding: 48px;
@@ -42,10 +43,7 @@
 
     input[type=email],
     input[type=submit]{
-        font-size: 1.5em;
-        padding: 10px;
-        border: none;
-        border-radius: 3px;
+        @include mixins.button-base()
     }
 
     input[type=email]{
@@ -55,22 +53,13 @@
     }
 
     input[type=submit]{
+        @include mixins.cta-btn();
         //background: colors.$color__red-one;
-        position: relative;
-        top: -2px;
-        background: colors.$color__yellow-one;
-        color: colors.$color__red-one;
-        font-family: fonts.$font__secondary;
-        box-shadow: 3px 3px colors.$color__yellow-two;
-        transition: .2s all;
-        margin: 10px 0 0 0;
     }
 
     input[type=submit]:focus,
     input[type=submit]:hover{
-        background: colors.$color__red-one;
-        color: colors.$color__yellow-one;
-        box-shadow: 3px 3px colors.$color__red-two;
+        @include mixins.cta-btn-hover();
     }
 
     p{

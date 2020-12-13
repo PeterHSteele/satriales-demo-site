@@ -24,10 +24,51 @@ html(lang="en-US")
             span <i class="fa fa-bars"></i>
         nav.main-navigation
           ul
-            -var menu = [{text:'Deli',href: '#',submenu:[]},{text: 'Butcher',href: './meats/index.html',submenu: [{text: 'Pork',href: '#pork'},{text:'Beef', href:'#beef'},{text:'Lamb', href:'#lamb'}]}, {text: 'Catering',href: '#',submenu:[]},{text: 'About',href: '#',submenu:[]}]
+            -
+              var menu = [
+                {
+                  text:'Deli',
+                  icon:'../img/sandwich.svg',
+                  href: '#',
+                  submenu:[]
+                },
+                {
+                  text: 'Butcher',
+                  icon: '../img/knife.svg',
+                  href: './meats/index.html',
+                  submenu: [
+                    {
+                      text: 'Pork',
+                      href: './meats/index.html#pork'
+                    },
+                    {
+                      text:'Beef', 
+                      href: './meats/index.html#beef'
+                    },
+                    {
+                      text:'Lamb', 
+                      href:'./meats/index.html#lamb'
+                    }
+                  ]
+                }, 
+                {
+                  text: 'Catering',
+                  icon: '../img/hat.svg',
+                  href: '#',
+                  submenu:[]
+                },
+                {
+                  text: 'About',
+                  icon: '../img/coffee.svg',
+                  href: '#',
+                  submenu:[]
+                }]
             mixin menu_item(item)
               - var hasSubmenu=item.submenu.length>0
               li
+                - var hasIcon = item.icon !=null 
+                if (hasIcon)
+                img.menu-icon(src=item.icon aria-hidden=true)
                 a(href=item.href)=item.text
                   if hasSubmenu
                     span <i class="fa fa-caret-down"></i>
@@ -41,34 +82,40 @@ html(lang="en-US")
             each val in menu
               +menu_item(val)
       main.butcher-content-wrap
-        h1 Butcher
+        .page-header
+          //img.knife(src="../img/knife.svg" aria-hidden=true)
+          h1 Butcher
+          //img.knife.rotated(src="../img/knife.svg" aria-hidden=true)
         -
           var meats=[
             {
               id: 'pork',
               name: 'Pork',
-              content:'Our pork comes from sustainably-raised pigs. Our criteria for sourcing sustainable meat is threefold. First, economic stability: we pay a fair price. Second, social sustainability. We buy from farms that treat their neighbors and workers well. Last but not least, environmental sustainability. We buy from farms that don\'t use checmicals harmful to the environment.',
+              content:'Our pork comes from sustainably-raised pigs. Our criteria for sourcing sustainable meat is threefold. First, economic stability: we pay a fair price. Second, social sustainability. We buy from farms that treat their neighbors and workers well. Last but not least, environmental sustainability. We buy from farms that don\'t use chemicals harmful to the environment.',
               src: '../img/pork.jpg',
               alt: 'picture of Satriale\'s pork',
+              cta: 'Meet a Supplier',
             },
             {
               id: 'lamb',
               name: 'Lamb',
               content: 'Lamb is a special delicacy of ours. Cook the ribs with a seasoning of garlic and rosemary',
               src: '../img/lamb.jpg',
-              alt: 'a rack of lamb ribs'
+              alt: 'a rack of lamb ribs',
+              cta: 'Recipes',
             },
             {
               id: 'beef',
               name: 'Beef',
               content: 'Whether you\'re making burgers or a roast for a special occasion, our beef is of the highest quality.',
               src: '../img/beef.jpg',
-              alt: 'a side of beef in our cooler'
+              alt: 'a side of beef in our cooler',
+              cta: 'View Pricing',
             }
           ]
 
         each meat in meats
-          +meat(meat.id, meat.name, meat.content, meat.src, meat.alt)
+          +meat(meat.id, meat.name, meat.content, meat.src, meat.alt,meat.cta)
 
 
 include ../footer.pug 

@@ -23,10 +23,51 @@ html(lang="en-US")
             span <i class="fa fa-bars"></i>
         nav.main-navigation
           ul
-            -var menu = [{text:'Deli',href: '#',submenu:[]},{text: 'Butcher',href: './meats/index.html',submenu: [{text: 'Pork',href: './meats/index.html#pork'},{text:'Beef', href: './meats/index.html#beef'},{text:'Lamb', href:'./meats/index.html#lamb'}]}, {text: 'Catering',href: '#',submenu:[]},{text: 'About',href: '#',submenu:[]}]
+            -
+              var menu = [
+                {
+                  text:'Deli',
+                  icon:'./img/sandwich.svg',
+                  href: '#',
+                  submenu:[]
+                },
+                {
+                  text: 'Butcher',
+                  icon: './img/knife.svg',
+                  href: './meats/index.html',
+                  submenu: [
+                    {
+                      text: 'Pork',
+                      href: './meats/index.html#pork'
+                    },
+                    {
+                      text:'Beef', 
+                      href: './meats/index.html#beef'
+                    },
+                    {
+                      text:'Lamb', 
+                      href:'./meats/index.html#lamb'
+                    }
+                  ]
+                }, 
+                {
+                  text: 'Catering',
+                  icon: './img/hat.svg',
+                  href: '#',
+                  submenu:[]
+                },
+                {
+                  text: 'About',
+                  icon: './img/coffee.svg',
+                  href: '#',
+                  submenu:[]
+                }]
             mixin menu_item(item)
               - var hasSubmenu=item.submenu.length>0
               li
+                - var hasIcon = item.icon !=null 
+                if (hasIcon)
+                img.menu-icon(src=item.icon aria-hidden=true)
                 a(href=item.href)=item.text
                   if hasSubmenu
                     span <i class="fa fa-caret-down"></i>

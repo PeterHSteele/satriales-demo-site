@@ -2,8 +2,38 @@
 @use '../../../abstracts/colors/colors';
 @use '../../../abstracts/mixins/mixins';
 
-.meats h1{
-    padding: 50px 200px;
+.meats .page-header{
+    //display: flex;
+    padding: 30px 200px;
+    background: colors.$color__yellow-one;
+    /*background: url('../img/bg7.svg');
+    background-repeat: no-repeat;
+    background-size: cover;*/
+
+    h1{
+        color: colors.$color__red-one;
+        text-shadow: 1px 1px colors.$color__red-two;
+        text-align: center;
+        font-size: 2.5em;
+    }
+
+    .knife{
+        flex: 1 0;
+        height: 100px;
+        text-align: right;
+    }
+
+    .knife.rotated{
+        transform: rotate(180deg);
+    }
+
+    @media all and (max-width: 800px){
+        padding: 50px 0;
+
+        h1{
+            padding: 10px
+        }
+    }
 }
 
 @include mixins.slideUpContent();
@@ -29,20 +59,46 @@
         width: 50%;
     }
 
-    .image-wrap{
-        //border-right: var(--border);
+    @media all and (max-width: 1000px){
+        .text,
+        .image-wrap{
+            width: 100%;
+        }
     }
 
-    &:nth-child(odd){
+    .cta-btn{
+        @include mixins.cta-btn();
+        @include mixins.button-base();
+    }
+
+    .cta-btn:hover,
+    .cta-btn:focus{
+        @include mixins.cta-btn-hover();
+    }
+
+    &:nth-child(even){
         .text{
             float: right;
         }
     }
 
-    &:nth-child(even){
+    &:nth-child(odd){
         background: colors.$color__yellow-one;
         h2{
             color: colors.$color__red-one;
+        }
+
+        .cta-btn{
+            background: colors.$color__red-one;
+            color: colors.$color__yellow-one;
+            box-shadow: 3px 3px colors.$color__red-two;
+
+            &:hover,
+            &:focus{
+                background: colors.$color__yellow-one;
+                color: colors.$color__red-one;
+                box-shadow: 3px 3px colors.$color__yellow-two;
+            }
         }
 
         .image-wrap{
