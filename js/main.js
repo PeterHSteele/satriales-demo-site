@@ -13,7 +13,6 @@ function Satriales_Navigation(){
   }
 
   _.handleToggle=function(){
-    console.log('scrollHeight',`${_.navlist.scrollHeight}px`);
     if(_.nav.className.indexOf(' toggled')>-1){
       _.replace(_.nav,' toggled');
       _.navlist.style.height=0
