@@ -713,7 +713,7 @@ article.menu section h3 {
 }
 .butcher .panel-left {
   height: 600px;
-  background-image: url("../img/cubed-meat.jpg");
+  background-image: url("../img/butcher-shop.jpg");
   background-size: cover;
 }
 .butcher .panel-left:after {

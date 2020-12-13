@@ -326,7 +326,7 @@ function QuestionCarousel(){
 
   const map=new MyMap();
   map.initMap();*/
-
+/*
   function initMap() {
     // The location of Uluru
     const kearny = { lat: 40.75592, lng: -74.155 };
@@ -342,3 +342,4 @@ function QuestionCarousel(){
       map: map,
     });
   }
+*/
