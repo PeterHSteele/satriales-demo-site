@@ -66,12 +66,9 @@ function SlideIn(){
 
     this.checkAnimationNeeded=function(){
       this.panelScrollTops.forEach((offset,index)=>{
-        //console.log('test',offset, window.scrollY+window.innerHeight);
         if(offset>window.scrollY+window.innerHeight){
           let panels=this.findPanels(this.wrappers[index]);
-          //console.log('panels',panels.length)
           panels.forEach(panel=>{
-            //console.log(panel.className)
             panel.className=panel.className.replace(' animation-not-needed','')
           });
         }
